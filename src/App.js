@@ -13,6 +13,7 @@ function App() {
   return (
     <div className="wrapper clear">
       <button>button</button>
+      <button>button2</button>
       {openBasket && <Basket openBasketFunc={openBasketFunc} />}
       <Header openBasketFunc={openBasketFunc} />
       <div className="content p-40">
