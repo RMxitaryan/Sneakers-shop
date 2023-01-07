@@ -34,10 +34,16 @@ const arr = [
 
 function App() {
   const [openBasket, setOpenBasket] = useState(false);
+  const [search, setSearch] = useState("");
 
   const openBasketFunc = () => {
     setOpenBasket(!openBasket);
   };
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <div className="wrapper clear">
       {openBasket && <Basket openBasketFunc={openBasketFunc} />}
@@ -48,22 +54,28 @@ function App() {
           <div className="search-block d-flex">
             <img width={30} height={21} src="/img/search.jpg" alt="Search" />
             <input
+              onChange={handleSearch}
+              value={search}
               style={{ border: "0px", padding: "10px" }}
               placeholder="Search..."
             />
           </div>
         </div>
         <div className="d-flex">
-          {arr.map((obj) => {
-            return (
-              <Card
-                key={obj.id}
-                name={obj.name}
-                price={obj.price}
-                src={obj.src}
-              />
-            );
-          })}
+          {arr
+            .filter((item) =>
+              item.name.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((obj) => {
+              return (
+                <Card
+                  key={obj.id}
+                  name={obj.name}
+                  price={obj.price}
+                  src={obj.src}
+                />
+              );
+            })}
         </div>
       </div>
     </div>
