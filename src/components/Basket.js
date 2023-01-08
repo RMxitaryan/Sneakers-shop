@@ -18,7 +18,29 @@ function Basket(props) {
         </h2>
 
         <div className="items">
-          <div className="cartItem d-flex align-center mb-20">
+          {props.cart.map((item) => (
+            <div className="cartItem d-flex align-center mb-20" key={item.id}>
+              <img
+                className="mr-20"
+                width={70}
+                height={70}
+                src={item.src}
+                alt="Sneakers"
+              />
+              <div className="mr-20">
+                <p className="mb-5">{item.name}</p>
+                <b>{item.price}$</b>
+              </div>
+              <img
+                className="RemoveBtn"
+                src="/img/cancel-svgrepo-com.svg"
+                alt="Remove"
+                width={20}
+                height={20}
+              />
+            </div>
+          ))}
+          {/* <div className="cartItem d-flex align-center mb-20">
             <img
               className="mr-20"
               width={70}
@@ -37,47 +59,7 @@ function Basket(props) {
               width={20}
               height={20}
             />
-          </div>
-          <div className="cartItem d-flex align-center mb-20">
-            <img
-              className="mr-20"
-              width={70}
-              height={70}
-              src="/img/1.jpg"
-              alt="Sneakers"
-            />
-            <div className="mr-20">
-              <p className="mb-5">Nike Dunk Low Argon 2022</p>
-              <b>130$</b>
-            </div>
-            <img
-              className="RemoveBtn"
-              src="/img/cancel-svgrepo-com.svg"
-              alt="Remove"
-              width={20}
-              height={20}
-            />
-          </div>
-          <div className="cartItem d-flex align-center mb-20">
-            <img
-              className="mr-20"
-              width={70}
-              height={70}
-              src="/img/1.jpg"
-              alt="Sneakers"
-            />
-            <div className="mr-20">
-              <p className="mb-5">Nike Dunk Low Argon 2022</p>
-              <b>130$</b>
-            </div>
-            <img
-              className="RemoveBtn"
-              src="/img/cancel-svgrepo-com.svg"
-              alt="Remove"
-              width={20}
-              height={20}
-            />
-          </div>
+          </div> */}
         </div>
         <ul>
           <li className="d-flex justify-between mb-15">

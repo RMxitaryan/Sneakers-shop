@@ -35,6 +35,7 @@ const arr = [
 function App() {
   const [openBasket, setOpenBasket] = useState(false);
   const [search, setSearch] = useState("");
+  const [cart, setCart] = useState([]);
 
   const openBasketFunc = () => {
     setOpenBasket(!openBasket);
@@ -46,7 +47,9 @@ function App() {
 
   return (
     <div className="wrapper clear">
-      {openBasket && <Basket openBasketFunc={openBasketFunc} />}
+      {openBasket && (
+        <Basket openBasketFunc={openBasketFunc} cart={cart} setCart={setCart} />
+      )}
       <Header openBasketFunc={openBasketFunc} />
       <div className="content p-40">
         <div className="d-flex align-center mb-40 justify-between">
@@ -73,6 +76,9 @@ function App() {
                   name={obj.name}
                   price={obj.price}
                   src={obj.src}
+                  prod={obj}
+                  cart={cart}
+                  setCart={setCart}
                 />
               );
             })}
