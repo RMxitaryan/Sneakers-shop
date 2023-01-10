@@ -4,6 +4,7 @@ import Basket from "./components/Basket";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import { v4 as uuidv4 } from "uuid";
+import { createUseStyles } from "react-jss";
 
 const arr = [
   {
@@ -32,10 +33,46 @@ const arr = [
   },
 ];
 
+const useStyles = createUseStyles({
+  wrapper: {
+    backgroundColor: "#ffffff",
+    boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.04)",
+    borderRadius: 20,
+    maxWidth: 1000,
+    margin: "20px auto",
+  },
+
+  content: {
+    padding: 40,
+  },
+  title: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 40,
+  },
+  titleH1: {
+    margin: 0,
+  },
+  searchBlock: {
+    border: "3px solid #f3f3f3",
+    height: 27,
+    display: "flex",
+  },
+  input: {
+    border: 0,
+    padding: 10,
+  },
+  cardsDiv: {
+    display: "flex",
+  },
+});
+
 function App() {
   const [openBasket, setOpenBasket] = useState(false);
   const [search, setSearch] = useState("");
   const [cart, setCart] = useState([]);
+  const classes = useStyles();
 
   const openBasketFunc = () => {
     setOpenBasket(!openBasket);
@@ -46,25 +83,25 @@ function App() {
   };
 
   return (
-    <div className="wrapper clear">
+    <div className={classes.wrapper}>
       {openBasket && (
         <Basket openBasketFunc={openBasketFunc} cart={cart} setCart={setCart} />
       )}
       <Header openBasketFunc={openBasketFunc} />
-      <div className="content p-40">
-        <div className="d-flex align-center mb-40 justify-between">
-          <h1 style={{ margin: "0px" }}>All sneakers</h1>
-          <div className="search-block d-flex">
+      <div className={classes.content}>
+        <div className={classes.title}>
+          <h1 className={classes.titleH1}>All sneakers</h1>
+          <div className={classes.searchBlock}>
             <img width={30} height={21} src="/img/search.jpg" alt="Search" />
             <input
               onChange={handleSearch}
               value={search}
-              style={{ border: "0px", padding: "10px" }}
+              className={classes.input}
               placeholder="Search..."
             />
           </div>
         </div>
-        <div className="d-flex">
+        <div className={classes.cardsDiv}>
           {arr
             .filter((item) =>
               item.name.toLowerCase().includes(search.toLowerCase())
